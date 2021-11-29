@@ -7,11 +7,23 @@
  */
 
 plugins {
+
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.5.31"
+    kotlin("jvm") version "1.6.0"
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11)) // "8"
+    }
+}
+kotlin {
+    jvmToolchain {
+        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11)) // "8"
+    }
 }
 
 repositories {
