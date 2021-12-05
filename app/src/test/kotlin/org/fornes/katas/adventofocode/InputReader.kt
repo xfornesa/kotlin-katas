@@ -4,6 +4,10 @@ import java.io.File
 
 typealias BingoBoard = Array<IntArray>
 
+typealias Coordinate = Pair<Int, Int>
+
+typealias Vector = Pair<Coordinate, Coordinate>
+
 class InputReader {
 
     companion object {
@@ -45,6 +49,17 @@ class InputReader {
             }
 
             return Pair(drawnNumbers, boards)
+        }
+
+        fun asListOfVectors(fileName: String): List<Vector> {
+            return File("src/test/resources/adventofcode/${fileName}")
+                .useLines { it.toList() }
+                .map {
+                    val vectorPart = it.split(" -> ")
+                    val coordsLeft = vectorPart[0].split(",")
+                    val coordsRight = vectorPart[1].split(",")
+                    Pair(Pair(coordsLeft[0].toInt(), coordsLeft[1].toInt()), Pair(coordsRight[0].toInt(), coordsRight[1].toInt()))
+                }
         }
     }
 }
