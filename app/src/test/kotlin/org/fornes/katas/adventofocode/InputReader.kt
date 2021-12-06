@@ -14,6 +14,8 @@ class InputReader {
         fun asListOfInts(fileName: String): List<Int> {
             return File("src/test/resources/adventofcode/${fileName}")
                 .useLines { it.toList() }
+                .flatMap { it.split(",") }
+                .map { it.trim() }
                 .map { it.toInt() }
         }
 
