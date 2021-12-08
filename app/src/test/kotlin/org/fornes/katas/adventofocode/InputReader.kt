@@ -33,6 +33,15 @@ class InputReader {
                 }
         }
 
+        fun asListOfPairsOfListString(fileName: String): List<Pair<List<String>, List<String>>> {
+            return File("src/test/resources/adventofcode/${fileName}")
+                .useLines { it.toList() }
+                .map {
+                    val split = it.split(" | ")
+                    Pair(split[0].split(" "), split[1].split(" "))
+                }
+        }
+
         fun asBingoGame(fileName: String): Pair<List<Int>, List<BingoBoard>> {
             val boards = mutableListOf<BingoBoard>()
             val lines = File("src/test/resources/adventofcode/${fileName}").readLines()
