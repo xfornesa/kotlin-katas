@@ -72,5 +72,21 @@ class InputReader {
                     Pair(Pair(coordsLeft[0].toInt(), coordsLeft[1].toInt()), Pair(coordsRight[0].toInt(), coordsRight[1].toInt()))
                 }
         }
+
+        fun asIntMatrix(fileName: String): Array<IntArray> {
+            return File("src/test/resources/adventofcode/${fileName}")
+                .useLines { it.toList() }
+                .map {
+                    it.toCharArray()
+                }
+                .map {
+                    it.map { it.toString().toInt() }
+                }
+                .map {
+                    it.toIntArray()
+                }
+                .toTypedArray()
+
+        }
     }
 }
